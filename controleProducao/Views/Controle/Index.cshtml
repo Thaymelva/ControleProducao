@@ -1,0 +1,60 @@
+﻿@model List<ControleModel>
+@{
+    ViewData["Title"] = "Controle de atividades";
+}
+
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controlles="Criar" asp-action="Criar" > Adicionar nova ação</a>
+    </div>
+    <br />
+    <h1 class="display-4">Controle de Atividades</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">INÍCIO</th>
+                <th scope="col">OPERAÇÃO</th>
+                <th scope="col">TEMPO EM MINUTOS</th>
+                <th scope="col">MÁQUINA</th>
+                <th scope="col">OPERADOR</th>
+                <th scope="col">TAREFA</th>
+                <th scope="col">ORDEM DE PRODUÇÃO</th>
+                <th scope="col">QUANTIDADE PRODUZIDA</th>
+                <th scope="col">QUANTIDADE PERDIDA</th>
+                <th scope="col">CLIENTE</th>
+                <th scope="col">PRODUTO</th>
+                <th scope="col">OBSERVAÇÃO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (ControleModel controle in Model)
+                {
+                    <tr>
+                        <th scope="row">@controle.Id</th>
+                        <td>@controle.Inicio</td>
+                        <td>@controle.TempoMinutos</td>
+                        <td>@controle.Maquina</td>
+                        <td>@controle.Operador</td>
+                        <td>@controle.Tarefa</td>
+                        <td>@controle.OrdemProducao</td>
+                        <td>@controle.QuantidadeProduzida</td>
+                        <td>@controle.QuantidadePerdida</td>
+                        <td>@controle.Cliente</td>
+                        <td>@controle.Produto</td>
+                        <td>@controle.Observação</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-primary " asp-route-id="@controle.Id" asp-controller="Controle" asp-action="Editar">Editar</a>
+                                <a class="btn btn-danger " asp-route-id="@controle.Id" asp-controller="Controle" asp-action="Apagar">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
