@@ -27,19 +27,34 @@ namespace controleProducao.Controllers
 
         public IActionResult Editar(int id)
         {
-     
-            return View();
+
+           ControleModel contato = _controleRepositorio.ListarPorId(id);
+            return View(contato);
         }
 
-        public IActionResult Apagar()
+        public IActionResult Apagar(int id)
         {
-            return View();
+            ControleModel controle = _controleRepositorio.ListarPorId(id);
+            return View(controle);
+        }
+
+        public IActionResult ApagarConfirm (int id)
+        {
+            _controleRepositorio.ApagarConfirm(id);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult Criar(ControleModel controle)
         {
             _controleRepositorio.Adicionar(controle);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Alterar(ControleModel controle)
+        {
+            _controleRepositorio.Atualizar(controle);
             return RedirectToAction("Index");
         }
     }

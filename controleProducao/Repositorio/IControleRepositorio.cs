@@ -12,5 +12,8 @@ namespace controleProducao.Repositorio
         List<ControleModel> BuscarTodos();
         ControleModel Adicionar(ControleModel controle);
 
+        ControleModel Atualizar(ControleModel Controle);
+        bool ApagarConfirm(int id);
+
     }
 }
